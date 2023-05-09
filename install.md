@@ -1,7 +1,12 @@
 # TMC-SM 설치 가이드
 ## 1. 사전 준비 사항
+1. 파일 다운로드
 
-1. CA Key 생성
+    [설치 스크립트 다운로드](./files/tmclocal-etc.tar)
+
+    [TMC 1.0 Beta 1 다운로드](https://onevmw-my.sharepoint.com/:u:/g/personal/wyoo_vmware_com/EeIzyTy_DRZPmr_4wTQtvCwBCr_bY-3MS9-r33MQ9oPVNw?e=adQy5s)
+
+2. CA Key 생성
 
     cd clusterissuer
 
@@ -25,7 +30,7 @@
         EOF
         )
     ```
-2. TKG 2.1 Cluster(3 node)
+3. TKG 2.1 Cluster(3 node)
 
     CA 파일을 TKG Mgmt Cluster(나중에 등록을 위해(수정 가능)) 와 Workload Cluster(수정은 안되고 생성시에만 가능)에 모두 적용해야함.
 
