@@ -37,7 +37,7 @@
 
     CA 파일을 TKG Mgmt Cluster(나중에 등록을 위해(수정 가능)) 와 Workload Cluster(수정은 안되고 생성시에만 가능)에 모두 적용해야함.
 
-    export TKG_CUSTOM_IMAGE_REPOSITORY_CA_CERTIFICATE=`cat ca.tanzukorea.net.cer |base64 -w0`
+    export TKG_CUSTOM_IMAGE_REPOSITORY_CA_CERTIFICATE=\`cat ca.tanzukorea.net.cer |base64 -w0`
 
     OR
     cat ca.tanzukorea.net.cer |base64 -w0 내용을 아래 data에 추가
