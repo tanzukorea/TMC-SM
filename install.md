@@ -60,7 +60,7 @@ tar -xvf tmclocal-etc.tar
 mkdir tmc-local
 tar -C tmc-local/ -xvf bundle-1.0.0-beta.1.tar
 cd tmc-local
-./tmc-local push-images harbor --project harbor.tanzukorea.net/tmc-local --username tanzukr --password "VMware1!" --concurrency 10
+./tmc-local push-images harbor --project harbor.tanzukorea.net/tmc-local --username 계정 --password "" --concurrency 10
 ```
 
 ## 3. DNS서버 설치
