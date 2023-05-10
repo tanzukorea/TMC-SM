@@ -68,8 +68,42 @@ sudo apt install bind9
 sudo apt install bind9 bind9utils bind9-dnsutils bind9-doc bind9-host
 sudo apt install dnsutils
 
-sudo cp tmclocal-etc/db.tanzukorea.net /etc/bind/
+sudo su - 
+cd /etc/bind/
+```
 
+vi db.tanzukorea.net
+```
+    $ORIGIN .
+    $TTL 604800	; 1 week
+    tanzukorea.net		IN SOA	tanzukorea.net. root.tanzukorea.net. (
+                    88         ; serial
+                    604800     ; refresh (1 week)
+                    86400      ; retry (1 day)
+                    2419200    ; expire (4 weeks)
+                    604800     ; minimum (1 week)
+                    )
+                NS	ns.tanzukorea.net.
+                A	10.220.46.7
+                AAAA	::1
+    $ORIGIN tanzukorea.net.
+    alertmanager		A	10.220.46.7
+    auth			A	10.220.46.7
+    blob			A	10.220.46.7
+    console			A	10.220.46.7
+    gts			A	10.220.46.7
+    gts-rest		A	10.220.46.7
+    keycloak		A	10.220.46.7
+    landing			A	10.220.46.7
+    ns			A	10.220.44.99
+    pinniped-supervisor	A	10.220.46.7
+    s3			A	10.220.46.7
+    console.s3			A	10.220.46.7
+    tmc			A	10.220.46.7
+    harbor			A	3.38.150.248
+```
+
+```
 sudo su - 
 cd /etc/bind/
 
@@ -167,9 +201,7 @@ kubectl -n kube-system rollout restart deployment coredns
     ```
 
 2. values.yaml 수정
-    ```
-    ./tmc-local validate-values ./values.yaml
-    ```
+
     ~/tmclocal-file/values.yaml 파일을 참고하여 수정
 
     CA파일은 위에서 생성한 ca.tanzukorea.net.cer 의 값을 넣음.
@@ -211,21 +243,24 @@ kubectl -n kube-system rollout restart deployment coredns
     예:)/etc/hosts
 
 ## 11. keycloak 설정
-    https://keycloak.tanzukorea.net 에 접속
 
-    1. Group을 하나 만들고 Role(tmc:admin, tmc:member) 을 부여해야함.
-    2. Client -> Create Client 하고, Client authentication을 ON --> Credentials가 생김 여기에서 Client Secret을 복사
-    3. Return URL 과 valid redirect URL 에 동일하게 다음 입력  : https://pinniped-supervisor.tanzukorea.net/provider/pinniped/callback
+1. https://keycloak.tanzukorea.net 에 접속
 
-    [](./images/keycloak1.png)
+1. Group을 하나 만들고 Role(tmc:admin, tmc:member) 을 부여해야함.
+2. Client -> Create Client 하고, Client authentication을 ON --> Credentials가 생김 여기에서 Client Secret을 복사
+
+3. Return URL 과 valid redirect URL 에 동일하게 다음 입력  : https://pinniped-supervisor.tanzukorea.net/provider/pinniped/callback
+
+
+![](./images/keycloak1.png)
     
-    4. User의 기본정보를 모두 입력해야 함.
-    [](./images/keycloak2.png)
+4. User의 기본정보를 모두 입력해야 함.
+![](./images/keycloak2.png)
     client scope에서 username, groups, offline_access 에 mappers, 와 scope를 연결해주어야 함. -> Clients에도 scope 추가
 
-    5. Realms settings -> Tokens : ES256
+5. Realms settings -> Tokens : ES256
         Refresh tokens : check
-    [](./images/keycloak3.png)
+![](./images/keycloak3.png)
    
 
 ## 12. tmc 재설치
