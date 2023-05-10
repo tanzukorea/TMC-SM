@@ -293,7 +293,8 @@ kubectl -n tkg-system get cm kapp-controller-config -oyaml
 
 kubectl -n tkg-system edit cm kapp-controller-config
 
-kapp-controller pod 삭제해서 적용
+kubectl -n tkg-system rollout restart deployment kapp-controller
+기존 kapp-controller pod 삭제(신규 pod pending -> 기존 pod kill로 삭제)
 ```
 
 
