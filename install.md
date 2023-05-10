@@ -1,8 +1,11 @@
 # TMC-SM 설치 가이드
+본 가이드는 TMC Self-Managed 를 설치하기 위한 것으로 여기에서 사용하는 도메인명은 tanzukorea.net 으로 각 상황에 맞게 변경해서 설치하시면 됩니다. IAM 으로는 Keycloak을 사용합니다. (vSphere의 계정관리를 사용할 수 있습니다.)
+
 ## 1. 사전 준비 사항
 1. 파일 다운로드
 
     [설치 스크립트 다운로드](./files/tmclocal-etc.tar)
+    : 설치를 조금 단순화한 스크립트 파일 및 설정파일
 
     [TMC 1.0 Beta 1 다운로드](https://onevmw-my.sharepoint.com/:u:/g/personal/wyoo_vmware_com/EeIzyTy_DRZPmr_4wTQtvCwBCr_bY-3MS9-r33MQ9oPVNw?e=adQy5s)
 
